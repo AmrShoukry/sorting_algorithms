@@ -1,6 +1,21 @@
 #include "sort.h"
 
 /**
+ * swap - Prints an array of integers
+ *
+ * @num1: First number
+ * @num2: Second number
+ */
+
+void swap(int *num1, int *num2)
+{
+	int temp = *num1;
+	*num1 = *num2;
+	*num2 = temp;
+}
+
+
+/**
  * quick_sort - Prints an array of integers
  *
  * @array: The array to be sorted
@@ -31,7 +46,7 @@ void quick_sort(int *array, size_t size)
 
 void quick_sort_partition(int *array, size_t size, size_t low, size_t high)
 {
-	int pivot, pointer1_value, fixed, temp;
+	int pivot, pointer1_value, fixed;
 	size_t pointer1_index;
 	size_t pointer2_index;
 	size_t pivot_index;
@@ -56,9 +71,7 @@ void quick_sort_partition(int *array, size_t size, size_t low, size_t high)
 		}
 		if (pointer1_value <= pivot && fixed == 1)
 		{
-			temp = pointer1_value;
-			array[pointer1_index] = array[pointer2_index];
-			array[pointer2_index] = temp;
+			swap(&array[pointer1_index], &array[pointer2_index]);
 
 			print_array(array, size);
 
