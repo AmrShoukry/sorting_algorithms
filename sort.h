@@ -1,10 +1,6 @@
 #ifndef PROTOTYPES
 #define PROTOTYPES
 
-#include <stdlib.h>
-#include <stdio.h>
-
-
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -18,6 +14,14 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
+
+
+#include <stdlib.h>
+#include <stdio.h>
+
+void print_array(const int *array, size_t size);
+void print_list(const listint_t *list);
+void bubble_sort(int *array, size_t size);
 
 
 #endif
