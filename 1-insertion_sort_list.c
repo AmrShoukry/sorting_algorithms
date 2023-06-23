@@ -4,7 +4,7 @@
 /**
  * insertion_sort_list - Prints an array of integers
  *
- * @array: The linkedlist to be sorted
+ * @list: The linkedlist to be sorted
  */
 
 void insertion_sort_list(listint_t **list)
