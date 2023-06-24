@@ -45,6 +45,7 @@ void merge(int *arr, size_t org_size, size_t size, size_t low, int dir, int r)
 	merge(arr, org_size, size / 2, low, dir, 1);
 	merge(arr, org_size, size / 2, low + size / 2, dir, 1);
 
+
 	if (r == 0)
 	{
 		printf("Result [%li/%li] (%s)\n", size, org_size, arrow);
