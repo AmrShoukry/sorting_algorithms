@@ -24,13 +24,7 @@ void swap(int *num1, int *num2)
 
 void quick_sort(int *array, size_t size)
 {
-	int low;
-	int high;
-
-	low = 0;
-	high = size - 1;
-
-	quick_sort_partition(array, size, low, high);
+	quick_sort_partition(array, size, 0, size - 1);
 }
 
 
