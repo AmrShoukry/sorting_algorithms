@@ -62,7 +62,7 @@ void merge(int *array, int *copy_array, int low, int middle, int high)
 	for (i = low; i <= high; i++)
 		array[i] = copy_array[i - low];
 
-	printf("[done]: ");
+	printf("[Done]: ");
 	print_array(copy_array, high - low + 1);
 }
 
