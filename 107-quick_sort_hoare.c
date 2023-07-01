@@ -1,75 +1,114 @@
+#include "sort.h"
+
+
 /**
- * swap - swaps two numbers
- * @one: the first int
- * @two: the second int
+ * swap - Prints an array of integers
+ *
+ * @num1: Number1
+ * @num2: Number2
  */
-void swap(int *one, int *two)
+
+void swap(int *num1, int *num2)
 {
 	int temp;
 
-	temp = *one;
-	*one = *two;
-	*two = temp;
+	temp = *num1;
+	*num1 = *num2;
+	*num2 = temp;
 }
 
-/**
- * partition - partitions the array
- * @arr: the array
- * @low: the smallest index
- * @high: the highest index
- * Return: idx
- */
-int partition(int arr[], int low, int high)
-{
-	int pivot = arr[high - 1];
-	int i = low - 1;
-	int j = high + 1;
 
-	while (1) {
-		do {
+
+/**
+ * partition - Prints an array of integers
+ *
+ * @array: The array to be sorted
+ * @size: size of the array
+ * @left: low index
+ * @right: high index
+ *
+ * Return: pivot_index
+ */
+
+int partition(int *array, size_t size, int left, int right)
+{
+	int pivot_index = right;
+	int pivot = array[pivot_index];
+	int i = left;
+	int j = right;
+
+	while (i <= j)
+	{
+		while (array[i] < pivot)
 			i++;
-		} while (arr[i] < pivot);
 
-		do {
+		while (array[j] > pivot)
 			j--;
-		} while (arr[j] > pivot);
 
-		if (i >= j)
-			return j;
+		if (i < j)
+		{
+			swap(&array[i], &array[j]);
+			print_array(array, size);
 
-		swap(&arr[i], &arr[j]);
+			if (pivot_index == i)
+			{
+				pivot_index = j;
+				pivot = array[pivot_index];
+				i++;
+			}
+			else if (pivot_index == j)
+			{
+				pivot_index = i;
+				pivot = array[pivot_index];
+				j--;
+			}
+			else
+			{
+				i++;
+				j--;
+			}
+		}
+		if (i == j)
+			break;
 	}
+	return (pivot_index);
 }
 
+
+
+
 /**
- * quickSort - the recursive call
- * @arr: the array
- * @low: the smallest index
- * @high: the highest index
+ * quick_sort_Hoare - Prints an array of integers
+ *
+ * @array: The array to be sorted
+ * @size: size of the array
+ * @left: low index
+ * @right: high index
  */
-void quickSort(int arr[], int low, int high)
+
+void quick_sort_Hoare(int *array, size_t size, int left, int right)
 {
-	int partitionIndex;
+	int pivot_index;
 
-	if (low < high) {
-		partitionIndex = partition(arr, low, high);
+	if (left >= right)
+		return;
 
-		quickSort(arr, low, partitionIndex);
+	pivot_index = partition(array, size, left, right);
 
-		quickSort(arr, partitionIndex + 1, high);
-	}
+	quick_sort_Hoare(array, size, left, pivot_index - 1);
+	quick_sort_Hoare(array, size, pivot_index + 1, right);
 }
 
-/**
- * printArray - prints the array
- * @arr: the array
- * @n: the size of the array
- */
-void printArray(int arr[], int n)
-{
-	int i;
 
-	for (i = 0; i < n; i++)
-		write(1, arr[i], 1);
-	write(1, '\n', 1);
+
+/**
+ * quick_sort_hoare - Prints an array of integers
+ *
+ * @array: The array to be sorted
+ * @size: size of the array
+ */
+
+void quick_sort_hoare(int *array, size_t size)
+{
+	quick_sort_Hoare(array, size, 0, size - 1);
 }
